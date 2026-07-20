@@ -1,0 +1,186 @@
+.container {
+  width: 100%;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  background-color: $color-bg-light;
+  overflow: hidden;
+  box-shadow: $shadow-sm;
+}
+
+.topBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $space-sm $space-md;
+  border-bottom: 1px solid $color-border;
+  background-color: $color-bg-light;
+}
+
+.tabsContainer {
+  display: flex;
+  align-items: center;
+  gap: $space-xs;
+}
+
+.tab {
+  background: transparent;
+  border: none;
+  padding: 6px 12px;
+  font-size: $text-size-sm;
+  color: $color-text-secondary;
+  cursor: pointer;
+  border-radius: $radius-md;
+  font-weight: 500;
+  transition: $transition-fast;
+
+  &:hover {
+    background-color: $color-bg-hover;
+    color: $color-text-primary;
+  }
+}
+
+.activeTab {
+  background-color: $color-bg-disabled;
+  color: $color-text-primary;
+}
+
+.addTabBtn {
+  background: transparent;
+  border: none;
+  font-size: $text-size-lg;
+  color: $color-text-secondary;
+  cursor: pointer;
+  padding: 0 $space-sm;
+  border-radius: $radius-md;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: $transition-fast;
+
+  &:hover {
+    background-color: $color-bg-hover;
+  }
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: $space-sm;
+}
+
+.searchInput {
+  padding: 4px 12px;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  font-size: $text-size-sm;
+  color: $color-text-primary;
+  outline: none;
+  width: 200px;
+  height: 32px;
+  transition: border-color $transition-fast;
+
+  &:focus {
+    border-color: $color-primary;
+  }
+}
+
+.actionBtn {
+  background-color: $color-bg-light;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: $color-text-secondary;
+  transition: $transition-fast;
+
+  &:hover {
+    background-color: $color-bg-hover;
+    border-color: $color-border-dark;
+  }
+}
+
+.activeActionBtn {
+  background-color: $color-bg-disabled;
+  border-color: $color-border-dark;
+  color: $color-text-primary;
+}
+
+.table {
+  width: 100%;
+}
+
+/* AG Grid Theme Overrides */
+
+:global(.ag-theme-quartz) {
+  --ag-font-family: inherit;
+  --ag-font-size: 14px;
+  --ag-border-color: transparent;
+  --ag-row-border-color: red !important;
+  --ag-header-background-color: #ffffff;
+  --ag-header-foreground-color: #6b7280;
+  --ag-header-height: 48px;
+  --ag-row-height: 56px;
+  --ag-selected-row-background-color: #f8fafc;
+  --ag-checkbox-checked-color: #3e475d;
+  --ag-accent-color: #3e475d;
+  --ag-background-color: #ffffff;
+  --ag-cell-horizontal-padding: 16px;
+}
+
+/* Header */
+
+:global(.ag-header-cell-label) {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+:global(.ag-header-cell) {
+  border-right: none !important;
+}
+
+:global(.ag-header) {
+  border-bottom: 1px solid #e5e7eb !important;
+}
+
+/* Cells */
+
+:global(.ag-cell) {
+  display: flex;
+  align-items: center;
+  border-right: none !important;
+  color: #3e475d;
+}
+
+/* Rows */
+
+:global(.ag-row) {
+  border-bottom: 1px solid #e2e8f0 !important;
+  transition: background 0.15s;
+  cursor: pointer;
+}
+
+:global(.ag-row:hover) {
+  background-color: #f8fafc !important;
+}
+
+:global(.ag-row-selected) {
+  background-color: #f8fafc !important;
+}
+
+/* Remove blue focus */
+
+:global(.ag-cell-focus),
+:global(.ag-cell-inline-editing) {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Pagination */
+
+:global(.ag-paging-panel) {
+  border-top: 1px solid #e5e7eb;
+}

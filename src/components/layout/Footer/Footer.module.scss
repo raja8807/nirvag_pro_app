@@ -1,0 +1,123 @@
+.footer {
+  padding: $space-xxl 0;
+  background-color: $background;
+  border-top: 1px solid $border;
+  color: $text-size-muted;
+}
+
+.footerContainer {
+  display: flex;
+  flex-direction: column;
+  gap: $space-xxl;
+
+  @include respond-above(lg) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+}
+
+.footerLeft {
+  display: flex;
+  flex-direction: column;
+  gap: $space-lg;
+  max-width: 320px;
+}
+
+.footerBrand {
+  display: flex;
+  align-items: center;
+}
+
+.socials {
+  display: flex;
+  gap: $space-md;
+  align-items: center;
+}
+
+.socialLink {
+  color: $text-size-muted;
+  transition: color $transition-fast;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  &:hover {
+    color: $color-primary;
+  }
+}
+
+.copyright {
+  font-size: $text-size-xs;
+  color: $text-size-muted;
+}
+
+.footerContent {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $space-xl;
+  width: 100%;
+
+  @include respond-above(sm) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @include respond-above(lg) {
+    width: auto;
+    gap: $space-xxl;
+  }
+}
+
+.footerBlock {
+  display: flex;
+  flex-direction: column;
+  gap: $space-sm;
+}
+
+.footerTitle {
+  font-size: $text-size-base;
+  font-weight: 700;
+  color: $foreground;
+  margin-bottom: $space-xs;
+}
+
+.footerLink {
+  font-size: $text-size-sm;
+  color: $text-size-muted;
+  transition: color $transition-fast;
+  position: relative;
+  width: max-content;
+
+  &:hover {
+    color: $color-primary;
+  }
+
+  &.hiringTag::after {
+    content: "HIRING";
+    font-size: 7px;
+    font-weight: 700;
+    background-color: $color-primary;
+    color: $accent;
+    padding: 0px 4px;
+    border-radius: 4px;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+
+  &.newTag::after {
+    content: "NEW";
+    font-size: 7px;
+    font-weight: 700;
+    background-color: $color-primary;
+    color: $accent;
+    padding: 0px 4px;
+    border-radius: 4px;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+}

@@ -1,0 +1,141 @@
+"use client";
+
+import React, { useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+
+import styles from "./SideBar.module.scss";
+import { ChevronDown, ChevronRight, FolderKanban, Home, Users } from "lucide-react";
+import { Image } from "react-bootstrap";
+
+const SideBar = () => {
+  const pathname = usePathname();
+
+  const menus = [
+    {
+      name: "Dashboard",
+      href: "/",
+      icon: <Home />,
+    },
+    {
+      name: "CRM",
+      href: "/crm",
+      icon: <Users />,
+      subMenus: [
+        {
+          name: "Leads",
+          href: "/crm/leads",
+        },
+        {
+          name: "Clients",
+          href: "/crm/clients",
+        },
+      ],
+    },
+    {
+      name: "Projects",
+      href: "/projects",
+      icon: <FolderKanban />,
+      subMenus: [
+        {
+          name: "Projects",
+          href: "/projects/projects",
+        },
+        {
+          name: "Sites",
+          href: "/projects/clients",
+        },
+      ],
+    },
+  ];
+
+  const toggleMenu = (name) => {
+    setExpandedMenus((prev) =>
+      prev.includes(name)
+        ? prev.filter((item) => item !== name)
+        : [...prev, name],
+    );
+  };
+
+  const isActive = (href) => pathname === href;
+
+  const [expandedMenus, setExpandedMenus] = useState(() => {
+    const expanded = menus
+      .filter((menu) =>
+        menu.subMenus?.some((subMenu) => pathname.startsWith(subMenu.href)),
+      )
+      .map((menu) => menu.name);
+
+    return expanded;
+  });
+
+  return (
+    <aside className={styles.SideBar}>
+      <div className={styles.logo}>
+        <Image src="/logo/logo_h.png" alt="logo" />
+      </div>
+
+      <nav className={styles.menu}>
+        {menus.map((menu) => {
+          const expanded = expandedMenus.includes(menu.name);
+
+          return (
+            <div className={styles.menuItem} key={menu.name}>
+              {menu.subMenus ? (
+                <>
+                  <button
+                    className={`${styles.menuButton} ${
+                      pathname.startsWith(menu.href) ? styles.active : ""
+                    }`}
+                    onClick={() => toggleMenu(menu.name)}
+                  >
+                    <div className={styles.left}>
+                      <span className={styles.icon}>{menu.icon}</span>
+                      <span>{menu.name}</span>
+                    </div>
+
+                    {expanded ? (
+                      <ChevronDown size={18} />
+                    ) : (
+                      <ChevronRight size={18} />
+                    )}
+                  </button>
+
+                  {expanded && (
+                    <div className={styles.subMenu}>
+                      {menu.subMenus.map((subMenu) => (
+                        <Link
+                          key={subMenu.href}
+                          href={subMenu.href}
+                          className={`${styles.subMenuItem} ${
+                            isActive(subMenu.href) ? styles.activeSubMenu : ""
+                          }`}
+                        >
+                          {subMenu.name}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </>
+              ) : (
+                <Link
+                  href={menu.href}
+                  className={`${styles.menuButton} ${
+                    isActive(menu.href) ? styles.active : ""
+                  }`}
+                >
+                  <div className={styles.left}>
+                    <span className={styles.icon}>{menu.icon}</span>
+                    <span>{menu.name}</span>
+                  </div>
+                </Link>
+              )}
+            </div>
+          );
+        })}
+      </nav>
+    </aside>
+  );
+};
+
+export default SideBar;

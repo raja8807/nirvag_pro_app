@@ -1,0 +1,207 @@
+.container {
+  padding: $space-lg;
+  display: flex;
+  flex-direction: column;
+  gap: $space-md;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.headerLeft {
+  display: flex;
+  flex-direction: column;
+  gap: $space-xs;
+}
+
+.backBtn {
+  background: none;
+  border: none;
+  color: $color-text-secondary;
+  cursor: pointer;
+  padding: 0;
+  font-size: $text-size-sm;
+  font-weight: 500;
+  margin-bottom: $space-sm;
+
+  &:hover {
+    color: $color-primary;
+  }
+}
+
+.titleBlock {
+  display: flex;
+  align-items: center;
+  gap: $space-sm;
+}
+
+.title {
+  font-size: $text-size-xl;
+  font-weight: 700;
+  color: $color-text-primary;
+  margin: 0;
+}
+
+.badge {
+  background-color: #e0f2fe;
+  color: #0369a1;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: $text-size-xs;
+  font-weight: 600;
+}
+
+.subtitle {
+  color: $color-text-secondary;
+  font-size: $text-size-md;
+  margin: 0;
+}
+
+.primaryBtn {
+  background-color: $color-primary;
+  color: $color-bg-light;
+  border: none;
+  padding: 10px 20px;
+  border-radius: $radius-md;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color $transition-fast;
+
+  &:hover {
+    background-color: $color-primary-dark;
+  }
+}
+
+.secondaryBtn {
+  background-color: $color-bg-light;
+  border: 1px solid $color-border;
+  color: $color-text-primary;
+  padding: 8px 16px;
+  border-radius: $radius-md;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: $space-md;
+  transition: all $transition-fast;
+
+  &:hover {
+    background-color: $color-bg-hover;
+    border-color: $color-border-dark;
+  }
+}
+
+.tabsBar {
+  display: flex;
+  gap: $space-md;
+  border-bottom: 1px solid $color-border;
+  margin-top: $space-md;
+}
+
+.tabBtn {
+  background: none;
+  border: none;
+  padding: $space-sm 0;
+  font-size: $text-size-md;
+  font-weight: 500;
+  color: $color-text-secondary;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all $transition-fast;
+
+  &:hover {
+    color: $color-text-primary;
+  }
+}
+
+.activeTab {
+  color: $color-primary;
+  border-bottom-color: $color-primary;
+}
+
+.content {
+  padding-top: $space-md;
+}
+
+.card {
+  background-color: $color-bg-light;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  padding: $space-lg;
+  box-shadow: $shadow-sm;
+
+  h3 {
+    margin-top: 0;
+    margin-bottom: $space-lg;
+    color: $color-text-primary;
+    font-size: $text-size-lg;
+    font-weight: 600;
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $space-lg;
+}
+
+.gridItem {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.label {
+  font-size: $text-size-xs;
+  color: $color-text-secondary;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.value {
+  font-size: $text-size-md;
+  color: $color-text-primary;
+  font-weight: 500;
+}
+
+.timeline {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  li {
+    margin-bottom: $space-lg;
+    padding-left: $space-lg;
+    border-left: 2px solid $color-border;
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: -6px;
+      top: 0;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: $color-primary;
+    }
+  }
+}
+
+.timelineDate {
+  font-size: $text-size-xs;
+  color: $color-text-secondary;
+  margin-bottom: 4px;
+}
+
+.timelineContent {
+  font-size: $text-size-sm;
+  color: $color-text-primary;
+  line-height: 1.5;
+}
+
+.emptyText {
+  color: $color-text-secondary;
+  font-style: italic;
+}

@@ -1,0 +1,175 @@
+.container {
+  padding: $space-lg;
+  display: flex;
+  flex-direction: column;
+  gap: $space-md;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.headerLeft {
+  display: flex;
+  flex-direction: column;
+  gap: $space-xs;
+}
+
+.backBtn {
+  background: none;
+  border: none;
+  color: $color-text-secondary;
+  cursor: pointer;
+  padding: 0;
+  font-size: $text-size-sm;
+  font-weight: 500;
+  margin-bottom: $space-sm;
+
+  &:hover {
+    color: $color-primary;
+  }
+}
+
+.titleBlock {
+  display: flex;
+  align-items: center;
+  gap: $space-sm;
+}
+
+.title {
+  font-size: $text-size-xl;
+  font-weight: 700;
+  color: $color-text-primary;
+  margin: 0;
+}
+
+.subtitle {
+  color: $color-text-secondary;
+  font-size: $text-size-md;
+  margin: 0;
+}
+
+.secondaryBtn {
+  background-color: $color-bg-light;
+  border: 1px solid $color-border;
+  color: $color-text-primary;
+  padding: 8px 16px;
+  border-radius: $radius-md;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all $transition-fast;
+
+  &:hover {
+    background-color: $color-bg-hover;
+    border-color: $color-border-dark;
+  }
+}
+
+.tabsBar {
+  display: flex;
+  gap: $space-md;
+  border-bottom: 1px solid $color-border;
+  margin-top: $space-md;
+}
+
+.tabBtn {
+  background: none;
+  border: none;
+  padding: $space-sm 0;
+  font-size: $text-size-md;
+  font-weight: 500;
+  color: $color-text-secondary;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all $transition-fast;
+
+  &:hover {
+    color: $color-text-primary;
+  }
+}
+
+.activeTab {
+  color: $color-primary;
+  border-bottom-color: $color-primary;
+}
+
+.content {
+  padding-top: $space-md;
+}
+
+.card {
+  background-color: $color-bg-light;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  padding: $space-lg;
+  box-shadow: $shadow-sm;
+
+  h3 {
+    margin-top: 0;
+    margin-bottom: $space-lg;
+    color: $color-text-primary;
+    font-size: $text-size-lg;
+    font-weight: 600;
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $space-lg;
+}
+
+.gridItem {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.gridItemFull {
+  grid-column: span 2;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.label,
+.finLabel {
+  font-size: $text-size-xs;
+  color: $color-text-secondary;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.value {
+  font-size: $text-size-md;
+  color: $color-text-primary;
+  font-weight: 500;
+}
+
+.financialSummary {
+  display: flex;
+  gap: $space-lg;
+}
+
+.finBox {
+  background-color: #fef2f2;
+  border: 1px solid #fca5a5;
+  padding: $space-md;
+  border-radius: $radius-md;
+  display: flex;
+  flex-direction: column;
+  gap: $space-xs;
+}
+
+.finValueDanger {
+  font-size: $text-size-xl;
+  color: #b91c1c;
+  font-weight: 700;
+}
+
+.emptyText {
+  color: $color-text-secondary;
+  font-style: italic;
+}

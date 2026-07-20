@@ -1,0 +1,73 @@
+.container {
+  padding: $space-lg;
+  display: flex;
+  flex-direction: column;
+  gap: $space-md;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  font-size: $text-size-xl;
+  font-weight: 600;
+  color: $color-text-primary;
+}
+
+.newLeadBtn {
+  background-color: $color-primary;
+  color: $color-bg-light;
+  border: none;
+  padding: 8px 16px;
+  border-radius: $radius-md;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color $transition-fast;
+
+  &:hover {
+    background-color: $color-primary-dark;
+  }
+}
+
+.actionButtons {
+  display: flex;
+  align-items: center;
+  gap: $space-sm;
+  height: 100%;
+}
+
+.viewBtn {
+  background-color: $color-bg-light;
+  border: 1px solid $color-border;
+  color: $color-text-secondary;
+  padding: 4px 12px;
+  border-radius: $radius-md;
+  font-size: $text-size-xs;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all $transition-fast;
+
+  &:hover {
+    background-color: $color-bg-hover;
+    color: $color-text-primary;
+  }
+}
+
+.convertBtn {
+  background-color: #dcfce7;
+  border: 1px solid #86efac;
+  color: #15803d;
+  padding: 4px 12px;
+  border-radius: $radius-md;
+  font-size: $text-size-xs;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all $transition-fast;
+
+  &:hover {
+    background-color: #bbf7d0;
+  }
+}

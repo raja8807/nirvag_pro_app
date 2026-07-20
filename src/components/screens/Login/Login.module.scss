@@ -1,0 +1,165 @@
+.loginPage {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.background {
+  flex: 1;
+}
+
+.centerWrapper {
+  height: 100vh;
+  padding-top: 120px; /* Account for header */
+  @include respond-below(lg) {
+    height: fit-content;
+    padding: 200px 0;
+  }
+}
+
+.contentWrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+
+  width: 100%;
+  height: 100%;
+  gap: 20px;
+
+  @include respond-below(lg) {
+    grid-template-columns: 1fr;
+    gap: $space-xl;
+  }
+}
+
+.textSide {
+  color: $accent;
+
+  @include respond-below(lg) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+}
+
+.title {
+  font-size: $text-size-6xl;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: $space-lg;
+
+  @include respond-below(md) {
+    font-size: $text-size-5xl;
+  }
+}
+
+.benefitsList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: $space-sm;
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: $space-sm;
+    font-size: $text-size-md;
+
+    svg {
+      flex-shrink: 0;
+    }
+  }
+}
+
+.formSide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $space-lg;
+  // background-color: red;
+  width: 100%;
+}
+
+.formBox {
+  background: $accent;
+  border-radius: 24px;
+  padding: 40px;
+  width: 500px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  text-align: center;
+
+  @include respond-below(md) {
+    width: 100%;
+  }
+}
+
+.formTitle {
+  color: $foreground;
+  font-size: $text-size-2xl;
+  font-weight: 600;
+  margin-bottom: $space-xl;
+}
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  gap: $space-md;
+}
+
+.inputGroup {
+  width: 100%;
+}
+
+.input {
+  width: 100%;
+  padding: 14px 20px;
+  border: 1px solid #e5e7eb;
+  border-radius: 100px;
+  font-size: $text-size-base;
+  color: $foreground;
+  outline: none;
+  transition: border-color $transition-default;
+
+  &::placeholder {
+    color: #9ca3af;
+  }
+
+  &:focus {
+    border-color: $color-primary;
+  }
+}
+
+.submitBtn {
+  width: 100%;
+  margin-top: $space-sm;
+  justify-content: center;
+}
+
+.signupText {
+  margin-top: $space-xl;
+  font-size: $text-size-sm;
+  color: $foreground;
+
+  .toggleBtn {
+    background: none;
+    border: none;
+    padding: 0;
+    color: $foreground;
+    text-decoration: underline;
+    font-weight: 600;
+    cursor: pointer;
+
+    &:hover {
+      color: $color-primary;
+    }
+  }
+}
+
+.footerText {
+  color: $accent;
+  font-size: $text-size-sm;
+  opacity: 0.8;
+}

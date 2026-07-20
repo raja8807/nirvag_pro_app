@@ -1,0 +1,405 @@
+.header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  padding: $space-lg 0;
+  transition: all $transition-default;
+  background-color: $accent;
+
+  .logo {
+    .logoImg {
+      width: 180px;
+      height: auto;
+      transition: 0.2s;
+
+      @include respond-below(lg) {
+        width: 130px;
+      }
+    }
+  }
+
+  .navLink {
+    color: $foreground;
+
+    &:hover {
+      color: $color-primary;
+    }
+  }
+
+  .navDropdown {
+    color: $foreground;
+  }
+
+  position: fixed;
+
+  &.sticky {
+    top: 0;
+    left: 0;
+    background-color: $accent;
+    box-shadow: $shadow-md;
+
+    .logo {
+      .logoImg {
+        width: 150px;
+        height: auto;
+
+        @include respond-below(lg) {
+          width: 110px;
+        }
+      }
+    }
+    padding: $space-md 0;
+    // animation: slideDown 0.4s ease forwards;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.headerInner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logoImg {
+  object-fit: contain;
+}
+
+.nav {
+  display: none;
+
+  @include respond-above(lg) {
+    display: flex;
+    align-items: center;
+    gap: $space-xl;
+  }
+}
+
+.navLink {
+  color: $accent;
+  font-weight: 600;
+  font-size: $text-size-sm;
+  transition: all $transition-fast;
+  position: relative;
+
+  &:hover {
+    color: $color-primary;
+  }
+
+  &.newTag {
+    &::after {
+      content: "NEW";
+      position: absolute;
+      top: -12px;
+      right: -24px;
+      background-color: $color-primary;
+      color: $accent;
+      font-size: 8px;
+      font-weight: 700;
+      padding: 1px 4px;
+      border-radius: 4px;
+    }
+  }
+}
+
+.navDropdownContainer {
+  position: relative;
+}
+
+.navDropdown {
+  color: $accent;
+  font-weight: 600;
+  font-size: $text-size-sm;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: $space-xs;
+  transition: all $transition-fast;
+  padding: 10px 0;
+
+  .dropdownIcon {
+    font-size: 8px;
+    opacity: 0.7;
+  }
+
+  &:hover {
+    color: $color-primary;
+  }
+}
+
+.dropdownList {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: $accent;
+  border: 1px solid $border;
+  border-radius: $radius-md;
+  box-shadow: $shadow-lg;
+  min-width: 150px;
+  z-index: 200;
+  padding: 10px 0;
+  animation: fadeIn 0.2s ease forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translate3d(-50%, 10px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.dropdownLinksWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.dropdownLink {
+  font-size: $text-size-sm;
+  color: $foreground;
+  padding: 8px 20px;
+  font-weight: 600;
+  transition: all $transition-fast;
+
+  &:hover {
+    background-color: $surface;
+    color: $color-primary;
+  }
+}
+
+.dropdownDivider {
+  height: 1px;
+  background-color: $border;
+  margin: 4px 0;
+  opacity: 0.5;
+}
+
+.actions {
+  display: none;
+
+  @include respond-above(lg) {
+    display: flex;
+    align-items: center;
+    gap: $space-lg;
+  }
+}
+
+.primaryBtn {
+  background-color: $color-primary;
+  color: $accent;
+  padding: 10px 24px;
+  border-radius: $radius-full;
+  font-weight: 700;
+  font-size: $text-size-sm;
+  border: 2px solid $color-primary;
+  transition: all $transition-default;
+
+  &:hover {
+    background-color: transparent;
+    color: $color-primary;
+  }
+}
+
+.menuButton {
+  display: none;
+  background: none;
+  border: none;
+  padding: $space-xs;
+  cursor: pointer;
+  color: $foreground;
+
+  @include respond-below(lg) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.offcanvas {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1045;
+  display: flex;
+  flex-direction: column;
+  background-color: $accent !important;
+  color: $foreground !important;
+  width: 85% !important;
+  max-width: 400px;
+  transform: translateX(100%);
+  transition:
+    transform 0.3s ease-in-out,
+    visibility 0.3s ease-in-out;
+  visibility: hidden;
+  box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+}
+
+:global(.show.offcanvas) {
+  transform: translateX(0);
+  visibility: visible;
+}
+
+.offcanvasHeader {
+  padding: $space-lg $space-xl;
+  border-bottom: none !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .offcanvasLogo {
+    width: 140px;
+    height: auto;
+  }
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  color: $foreground;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: $space-xs;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.offcanvasBody {
+  padding: $space-md $space-xl;
+  display: flex;
+  flex-direction: column;
+}
+
+.mobileNav {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.mobileNavLink {
+  color: $foreground;
+  font-weight: 600;
+  font-size: 1.125rem;
+  text-decoration: none;
+  padding: 14px 0;
+  display: flex;
+  align-items: center;
+
+  &:hover {
+    color: $color-primary;
+  }
+
+  &.mobileNewTag {
+    &::after {
+      content: "New";
+      margin-left: 12px;
+      background-color: #e0f2ec;
+      color: #00a859;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: $radius-full;
+    }
+  }
+}
+
+.mobileDropdown {
+  display: flex;
+  flex-direction: column;
+}
+
+.mobileDropdownLabel {
+  color: $foreground;
+  font-weight: 600;
+  font-size: 1.125rem;
+  padding: 14px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.dropdownChevron {
+  transition: transform 0.3s ease;
+  display: flex;
+  align-items: center;
+  color: $foreground;
+
+  &.open {
+    transform: rotate(180deg);
+  }
+}
+
+.mobileDropdownList {
+  display: flex;
+  flex-direction: column;
+  padding-left: $space-lg;
+  animation: slideDownMobile 0.2s ease forwards;
+}
+
+@keyframes slideDownMobile {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.mobileActions {
+  margin-top: $space-xxl;
+  display: flex;
+  flex-direction: column;
+  gap: $space-lg;
+  align-items: flex-start;
+  padding-bottom: $space-xxl;
+}
+
+.mobileLoginLink {
+  color: $foreground;
+  font-weight: 700;
+  font-size: 1.125rem;
+  text-decoration: none;
+  padding: 8px 0;
+
+  &:hover {
+    color: $color-primary;
+  }
+}
+
+.mobileSignupBtn {
+  padding: 12px 32px !important;
+  font-size: 1.125rem !important;
+  background-color: $color-primary !important;
+  color: $accent !important;
+  border-radius: $radius-full !important;
+  border: none !important;
+  font-weight: 600 !important;
+  width: auto !important;
+}
