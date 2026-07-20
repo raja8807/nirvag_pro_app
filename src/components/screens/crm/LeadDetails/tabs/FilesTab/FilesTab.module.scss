@@ -1,0 +1,37 @@
+.card {
+  background-color: $color-bg-light;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  padding: $space-lg;
+  box-shadow: $shadow-sm;
+
+  h3 {
+    margin-top: 0;
+    margin-bottom: $space-lg;
+    color: $color-text-primary;
+    font-size: $text-size-lg;
+    font-weight: 600;
+  }
+}
+
+.emptyText {
+  color: $color-text-secondary;
+  font-style: italic;
+}
+
+.secondaryBtn {
+  background-color: $color-bg-light;
+  border: 1px solid $color-border;
+  color: $color-text-primary;
+  padding: 8px 16px;
+  border-radius: $radius-md;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: $space-md;
+  transition: all $transition-fast;
+
+  &:hover {
+    background-color: $color-bg-hover;
+    border-color: $color-border-dark;
+  }
+}

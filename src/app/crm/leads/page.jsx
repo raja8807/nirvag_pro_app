@@ -1,5 +1,5 @@
-import Leads from "@/components/screens/crm/Leads/Leads";
+import LeadsScreen from "@/components/screens/crm/Leads/Leads";
 
 export default function CRMLeadsPage() {
-  return <Leads />;
+  return <LeadsScreen />;
 }

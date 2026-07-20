@@ -1,0 +1,70 @@
+.card {
+  background-color: $color-bg-light;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-sm;
+  overflow: hidden;
+}
+
+.tableWrapper {
+  width: 100%;
+  overflow-x: auto;
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    
+    th {
+      background-color: $color-bg-hover;
+      padding: $space-md;
+      font-size: $text-size-sm;
+      color: $color-text-secondary;
+      font-weight: 600;
+      border-bottom: 1px solid $color-border;
+    }
+    
+    td {
+      padding: $space-md;
+      font-size: $text-size-sm;
+      color: $color-text-primary;
+      border-bottom: 1px solid $color-border;
+    }
+    
+    tbody tr:last-child td {
+      border-bottom: none;
+    }
+    
+    tbody tr:hover {
+      background-color: rgba($color-bg-hover, 0.5);
+    }
+  }
+}
+
+.badge {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: $radius-full;
+  font-size: $text-size-xs;
+  font-weight: 600;
+
+  &.completed {
+    background-color: rgba($color-success, 0.1);
+    color: $color-success;
+  }
+  
+  &.scheduled {
+    background-color: rgba($color-primary, 0.1);
+    color: $color-primary;
+  }
+  
+  &.cancelled {
+    background-color: rgba($color-danger, 0.1);
+    color: $color-danger;
+  }
+  
+  &.rescheduled {
+    background-color: rgba($color-warning, 0.1);
+    color: $color-warning-dark;
+  }
+}

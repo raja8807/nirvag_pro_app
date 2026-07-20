@@ -7,89 +7,100 @@
 
 .header {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+  flex-direction: column;
+  gap: $space-md;
+  background-color: $color-bg-light;
+  padding: $space-lg;
+  border-radius: $radius-lg;
+  border: 1px solid $color-border;
 }
 
-.headerLeft {
+.headerTop {
   display: flex;
-  flex-direction: column;
-  gap: $space-xs;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.titleSection {
+  display: flex;
+  align-items: center;
+  gap: $space-md;
 }
 
 .backBtn {
   background: none;
   border: none;
-  color: $color-text-secondary;
   cursor: pointer;
-  padding: 0;
-  font-size: $text-size-sm;
-  font-weight: 500;
-  margin-bottom: $space-sm;
-
+  color: $color-text-secondary;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  border-radius: 50%;
+  
   &:hover {
-    color: $color-primary;
+    background-color: $color-bg-hover;
+    color: $color-text-primary;
   }
 }
 
-.titleBlock {
-  display: flex;
-  align-items: center;
-  gap: $space-sm;
-}
-
 .title {
-  font-size: $text-size-xl;
+  font-size: $text-size-2xl;
   font-weight: 700;
   color: $color-text-primary;
   margin: 0;
 }
 
-.badge {
-  background-color: #e0f2fe;
-  color: #0369a1;
+.statusBadge {
+  background-color: $color-info-light;
+  color: $color-info-dark;
   padding: 4px 12px;
-  border-radius: 999px;
+  border-radius: $radius-full;
   font-size: $text-size-xs;
   font-weight: 600;
 }
 
-.subtitle {
-  color: $color-text-secondary;
-  font-size: $text-size-md;
-  margin: 0;
-}
-
-.primaryBtn {
-  background-color: $color-primary;
-  color: $color-bg-light;
-  border: none;
-  padding: 10px 20px;
-  border-radius: $radius-md;
+.priorityBadge {
+  background-color: $color-danger-light;
+  color: $color-danger-dark;
+  padding: 4px 12px;
+  border-radius: $radius-full;
+  font-size: $text-size-xs;
   font-weight: 600;
-  cursor: pointer;
-  transition: background-color $transition-fast;
+}
 
-  &:hover {
-    background-color: $color-primary-dark;
+.rating {
+  display: flex;
+  gap: 2px;
+  align-items: center;
+  margin-left: $space-sm;
+}
+
+.quickActions {
+  display: flex;
+  align-items: center;
+  gap: $space-md;
+  padding-top: $space-md;
+  border-top: 1px dashed $color-border;
+  overflow-x: auto;
+  
+  /* Hide scrollbar */
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
   }
 }
 
-.secondaryBtn {
-  background-color: $color-bg-light;
-  border: 1px solid $color-border;
-  color: $color-text-primary;
-  padding: 8px 16px;
-  border-radius: $radius-md;
-  font-weight: 500;
-  cursor: pointer;
-  margin-top: $space-md;
-  transition: all $transition-fast;
+.quickLabel {
+  font-size: $text-size-sm;
+  color: $color-text-secondary;
+  font-weight: 600;
+  white-space: nowrap;
+}
 
-  &:hover {
-    background-color: $color-bg-hover;
-    border-color: $color-border-dark;
-  }
+.actionButtons {
+  display: flex;
+  gap: $space-sm;
 }
 
 .tabsBar {
@@ -97,14 +108,22 @@
   gap: $space-md;
   border-bottom: 1px solid $color-border;
   margin-top: $space-md;
+  overflow-x: auto;
+  
+  /* Hide scrollbar for cleaner look */
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .tabBtn {
   background: none;
   border: none;
-  padding: $space-sm 0;
-  font-size: $text-size-md;
-  font-weight: 500;
+  padding: $space-xs 0 $space-sm 0;
+  font-size: $text-size-sm;
+  font-weight: 600;
+  white-space: nowrap;
   color: $color-text-secondary;
   cursor: pointer;
   border-bottom: 2px solid transparent;

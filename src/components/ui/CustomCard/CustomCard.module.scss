@@ -27,7 +27,8 @@
       align-items: center;
       gap: 20px;
       h2 {
-        font-size: 19px;
+        font-size: 18px;
+        font-weight: 600;
       }
 
       @include respond-below(md) {
@@ -40,5 +41,6 @@
 
   .content {
     padding: $space-sm $space-md;
+    padding-bottom: $space-lg;
   }
 }

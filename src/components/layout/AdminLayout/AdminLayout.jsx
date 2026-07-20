@@ -1,13 +1,15 @@
-"use client"
+'use client'
 
 import React, { useState } from "react";
 import styles from "./AdminLayout.module.scss";
 import SideBar from "./SideBar/SideBar";
 import AdminHeader from "../Header/AdminHeader";
 
+
 const AdminLayout = ({ children }) => {
 
   const [sideBarCollapsed, setSidebarCollapsed] = useState(false);
+
 
   return (
     <div className={styles.AdminLayout}>

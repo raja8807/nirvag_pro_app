@@ -44,7 +44,7 @@
     cursor: not-allowed;
 
     .thumb {
-      background-color: $color-text-tertiary;
+      // background-color: $color-text-tertiary;
     }
   }
 }
@@ -68,7 +68,7 @@
   background-color: #fff;
   border-radius: 50%;
   transition: transform $transition-fast;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 /* Sizes */

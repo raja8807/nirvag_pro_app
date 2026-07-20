@@ -1,0 +1,22 @@
+.card {
+  background-color: $color-bg-light;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  padding: $space-lg;
+  box-shadow: $shadow-sm;
+
+  h3 {
+    margin-top: 0;
+    margin-bottom: $space-md;
+    color: $color-text-primary;
+    font-size: $text-size-lg;
+    font-weight: 600;
+  }
+}
+
+.emptyText {
+  color: $color-text-secondary;
+  font-size: $text-size-sm;
+  font-style: italic;
+  margin: 0;
+}

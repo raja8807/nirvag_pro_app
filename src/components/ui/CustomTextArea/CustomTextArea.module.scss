@@ -26,10 +26,12 @@
   resize: vertical;
   min-height: 80px;
   font-family: inherit;
-  transition: border-color $transition-fast, box-shadow $transition-fast;
+  transition:
+    border-color $transition-fast,
+    box-shadow $transition-fast;
 
   &::placeholder {
-    color: $color-text-tertiary;
+    // color: $color-text-tertiary;
   }
 
   &:focus {

@@ -117,6 +117,7 @@ export default function DataTable({
   height = 400,
   selectable = true,
   onRowClicked,
+  dropdownFieldName = "leadStatus",
   ...rest
 }) {
   const [activeTab, setActiveTab] = useState("All");
@@ -128,12 +129,17 @@ export default function DataTable({
   const dynamicTabs = useMemo(() => {
     const statuses = new Set();
     rows.forEach((row) => {
-      if (row.status) {
-        statuses.add(row.status);
+      if (row[dropdownFieldName]) {
+        statuses.add(row[dropdownFieldName]);
       }
     });
     return ["All", ...Array.from(statuses)];
   }, [rows]);
+
+
+  console.log(rows);
+  
+  
 
   const defaultColDef = {
     sortable: true,
@@ -148,7 +154,7 @@ export default function DataTable({
     if (!activeTab || activeTab === "All" || activeTab === "+") return rows;
     return rows.filter(
       (r) =>
-        r.status && String(r.status).toLowerCase() === activeTab.toLowerCase(),
+        r[dropdownFieldName] && String(r[dropdownFieldName]).toLowerCase() === activeTab.toLowerCase(),
     );
   }, [rows, activeTab]);
 
@@ -191,8 +197,8 @@ export default function DataTable({
       }
 
       const isStatusCol =
-        colDef.field?.toLowerCase() === "status" ||
-        colDef.headerName?.toLowerCase() === "status";
+        colDef.field?.toLowerCase() === dropdownFieldName ||
+        colDef.headerName?.toLowerCase() === dropdownFieldName;
       if (isStatusCol && !colDef.cellRenderer) {
         colDef.cellRenderer = DefaultStatusCellRenderer;
       }

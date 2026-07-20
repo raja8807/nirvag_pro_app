@@ -4,10 +4,14 @@ import CustomCard from "@/components/ui/CustomCard/CustomCard";
 import CustomButton from "@/components/ui/CustomButton/CustomButton";
 import { PlusCircle } from "lucide-react";
 import { Button, Col, Row } from "react-bootstrap";
+import PageLayout from "@/components/ui/PageLayout/PageLayout";
+import PageHead from "@/components/ui/PageHead/PageHead";
 
 const HomeScreen = () => {
   return (
-    <div className={styles.HomeScreen}>
+   <>
+   <PageHead/>
+    <PageLayout className={styles.HomeScreen}>
       <div className={styles.overlay}>xxxx</div>
       <Row >
         <Col xs={4}>
@@ -94,7 +98,8 @@ const HomeScreen = () => {
           </CustomCard>
         </Col>
       </Row>
-    </div>
+    </PageLayout>
+   </>
   );
 };
 

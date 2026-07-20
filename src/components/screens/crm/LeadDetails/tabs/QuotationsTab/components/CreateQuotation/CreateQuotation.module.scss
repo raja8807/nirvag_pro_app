@@ -1,0 +1,139 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: $space-xxl;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: $space-md;
+}
+
+.sectionTitle {
+  font-size: $text-size-lg;
+  font-weight: 700;
+  color: $color-text-primary;
+  border-bottom: 1px solid $color-border;
+  padding-bottom: $space-sm;
+  margin: 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: $space-lg;
+
+  @include respond-below(md) {
+    grid-template-columns: 1fr 1fr;
+  }
+  @include respond-below(sm) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.fullWidth {
+  grid-column: 1 / -1;
+}
+
+/* Items Table */
+.itemsTable {
+  width: 100%;
+  border-collapse: collapse;
+
+  th {
+    background-color: $color-bg-hover;
+    padding: $space-sm;
+    font-size: $text-size-xs;
+    font-weight: 600;
+    color: $color-text-secondary;
+    text-align: left;
+    border: 1px solid $color-border;
+  }
+
+  td {
+    padding: $space-sm;
+    border: 1px solid $color-border;
+  }
+
+  input {
+    width: 100%;
+    border: none;
+    background: transparent;
+    font-size: $text-size-sm;
+    color: $color-text-primary;
+    outline: none;
+    padding: 4px;
+    
+    &:focus {
+      background-color: rgba($color-primary, 0.05);
+    }
+  }
+
+  .amountCol {
+    font-weight: 600;
+    text-align: right;
+  }
+
+  .actionCol {
+    text-align: center;
+    width: 40px;
+    
+    button {
+      background: none;
+      border: none;
+      color: $color-danger;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+}
+
+.addBtn {
+  align-self: flex-start;
+  margin-top: $space-sm;
+}
+
+/* Summary Box */
+.summaryBox {
+  display: flex;
+  flex-direction: column;
+  gap: $space-sm;
+  align-self: flex-end;
+  width: 300px;
+  background-color: $color-bg-hover;
+  padding: $space-lg;
+  border-radius: $radius-md;
+  border: 1px solid $color-border;
+
+  .summaryRow {
+    display: flex;
+    justify-content: space-between;
+    font-size: $text-size-sm;
+    color: $color-text-secondary;
+
+    &.grandTotal {
+      font-size: $text-size-lg;
+      font-weight: 700;
+      color: $color-text-primary;
+      border-top: 1px dashed $color-border-dark;
+      padding-top: $space-sm;
+      margin-top: $space-xs;
+    }
+  }
+}
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: $space-md;
+  margin-top: $space-lg;
+  padding-top: $space-lg;
+  border-top: 1px solid $color-border;
+}
