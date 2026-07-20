@@ -5,10 +5,16 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 import styles from "./SideBar.module.scss";
-import { ChevronDown, ChevronRight, FolderKanban, Home, Users } from "lucide-react";
+import {
+  ChevronDown,
+  ChevronRight,
+  FolderKanban,
+  Home,
+  Users,
+} from "lucide-react";
 import { Image } from "react-bootstrap";
 
-const SideBar = () => {
+const SideBar = ({sideBarCollapsed, setSidebarCollapsed}) => {
   const pathname = usePathname();
 
   const menus = [
@@ -57,7 +63,7 @@ const SideBar = () => {
     );
   };
 
-  const isActive = (href) => pathname === href;
+  const isActive = (href) => pathname.includes(href);
 
   const [expandedMenus, setExpandedMenus] = useState(() => {
     const expanded = menus
@@ -69,10 +75,17 @@ const SideBar = () => {
     return expanded;
   });
 
+  
+
   return (
-    <aside className={styles.SideBar}>
+    <aside
+      className={`${styles.SideBar} ${sideBarCollapsed ? styles.collapsed : ""}`}
+      onClick={() => {
+        setSidebarCollapsed(false);
+      }}
+    >
       <div className={styles.logo}>
-        <Image src="/logo/logo_h.png" alt="logo" />
+        <Image src={sideBarCollapsed ? "/logo/logo_i.png" : "/logo/logo_2.png"} alt="logo" />
       </div>
 
       <nav className={styles.menu}>
@@ -95,9 +108,9 @@ const SideBar = () => {
                     </div>
 
                     {expanded ? (
-                      <ChevronDown size={18} />
+                      <ChevronDown size={18} className={styles.chevron} />
                     ) : (
-                      <ChevronRight size={18} />
+                      <ChevronRight size={18} className={styles.chevron} />
                     )}
                   </button>
 

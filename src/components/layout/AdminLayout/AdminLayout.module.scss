@@ -2,9 +2,20 @@
   display: flex;
 
   .cont {
-    padding: 10px;
+    padding: 20px;
     background-color: $color-bg-page;
     // width: 100%;
-    width: calc(100vw - 260px);
+    width: calc(100vw - 230px);
+    height: calc(100vh - 72px);
+    overflow: auto;
+
+    &.expanded {
+      // background-color: red;
+      width: calc(100vw - 62px);
+
+      @include respond-below(md) {
+        width: 100vw;
+      }
+    }
   }
 }

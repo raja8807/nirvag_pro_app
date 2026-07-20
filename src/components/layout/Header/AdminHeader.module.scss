@@ -1,0 +1,24 @@
+.AdminHeader {
+  // height: 70px;
+  border-bottom: 1px solid $color-border-dark;
+  padding: 23px 20px;
+
+  .container {
+    .left {
+      display: flex;
+      gap: 12px;
+      h3 {
+        font-size: 20px;
+      }
+
+      svg {
+        cursor: pointer;
+
+        &:hover {
+          color: $color-secondary;
+        }
+      }
+      // color: $color-text-primary;
+    }
+  }
+}

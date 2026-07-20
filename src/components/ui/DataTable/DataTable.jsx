@@ -2,27 +2,45 @@
 
 import React, { useState, useMemo, useRef } from "react";
 import { AgGridReact } from "ag-grid-react";
-import {
-  ModuleRegistry,
-  AllCommunityModule,
-} from "ag-grid-community";
+import { ModuleRegistry, AllCommunityModule } from "ag-grid-community";
 import { manrope } from "@/styles/fonts";
 
 import "ag-grid-community/styles/ag-theme-quartz.css";
 
 import styles from "./DataTable.module.scss";
+import { Image } from "react-bootstrap";
+import CustomSelect from "../CustomSelect/CustomSelect";
+import CustomCard from "../CustomCard/CustomCard";
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
 const SearchIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+  <svg
+    width="16"
+    height="16"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
     <circle cx="11" cy="11" r="8"></circle>
     <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
   </svg>
 );
 
 const FilterIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+  <svg
+    width="16"
+    height="16"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
     <line x1="4" y1="21" x2="4" y2="14"></line>
     <line x1="4" y1="10" x2="4" y2="3"></line>
     <line x1="12" y1="21" x2="12" y2="12"></line>
@@ -36,7 +54,16 @@ const FilterIcon = () => (
 );
 
 const SortIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+  <svg
+    width="16"
+    height="16"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
     <path d="M7 15l5 5 5-5"></path>
     <path d="M7 9l5-5 5 5"></path>
   </svg>
@@ -44,20 +71,20 @@ const SortIcon = () => (
 
 const DefaultStatusCellRenderer = (params) => {
   if (!params.value) return null;
-  
-  let bgColor = '#f1f5f9';
-  let color = '#64748b';
+
+  let bgColor = "#f1f5f9";
+  let color = "#64748b";
   const val = String(params.value).toLowerCase();
-  
-  if (val === 'active' || val === 'completed') {
-    bgColor = '#dcfce7'; // green-100
-    color = '#15803d'; // green-700
-  } else if (val === 'draft' || val === 'progress') {
-    bgColor = '#e0f2fe'; // sky-100
-    color = '#0369a1'; // sky-700
-  } else if (val === 'archived' || val === 'cancelled') {
-    bgColor = '#f1f5f9'; // slate-100
-    color = '#475569'; // slate-600
+
+  if (val === "active" || val === "completed") {
+    bgColor = "#dcfce7"; // green-100
+    color = "#15803d"; // green-700
+  } else if (val === "draft" || val === "progress") {
+    bgColor = "#e0f2fe"; // sky-100
+    color = "#0369a1"; // sky-700
+  } else if (val === "archived" || val === "cancelled") {
+    bgColor = "#f1f5f9"; // slate-100
+    color = "#475569"; // slate-600
   }
 
   return (
@@ -65,15 +92,15 @@ const DefaultStatusCellRenderer = (params) => {
       style={{
         backgroundColor: bgColor,
         color: color,
-        padding: '0 12px',
-        height: '24px',
-        borderRadius: '9999px',
-        fontSize: '12px',
+        padding: "0 12px",
+        height: "24px",
+        borderRadius: "9999px",
+        fontSize: "12px",
         fontWeight: 500,
-        display: 'inline-flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        whiteSpace: 'nowrap'
+        display: "inline-flex",
+        alignItems: "center",
+        justifyContent: "center",
+        whiteSpace: "nowrap",
       }}
     >
       {params.value}
@@ -87,7 +114,7 @@ export default function DataTable({
   loading = false,
   pagination = true,
   pageSize = 20,
-  height = 600,
+  height = 400,
   selectable = true,
   onRowClicked,
   ...rest
@@ -119,13 +146,16 @@ export default function DataTable({
 
   const filteredRows = useMemo(() => {
     if (!activeTab || activeTab === "All" || activeTab === "+") return rows;
-    return rows.filter(r => r.status && String(r.status).toLowerCase() === activeTab.toLowerCase());
+    return rows.filter(
+      (r) =>
+        r.status && String(r.status).toLowerCase() === activeTab.toLowerCase(),
+    );
   }, [rows, activeTab]);
 
   const gridColumns = useMemo(() => {
     return columns.map((c, index) => {
       const colDef = { ...c };
-      
+
       if (showFilter) {
         colDef.filter = c.filter ?? true;
         colDef.floatingFilter = false;
@@ -137,13 +167,22 @@ export default function DataTable({
         colDef.cellRenderer = (params) => {
           if (params.data?.image) {
             return (
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <img
+              <div
+                style={{ display: "flex", alignItems: "center", gap: "12px" }}
+              >
+                <Image
                   src={params.data.image}
                   alt={params.value}
-                  style={{ width: '40px', height: '40px', borderRadius: '8px', objectFit: 'cover' }}
+                  style={{
+                    width: "25px",
+                    height: "25px",
+                    borderRadius: "50%",
+                    objectFit: "cover",
+                  }}
                 />
-                <span style={{ fontWeight: 500, color: '#334155' }}>{params.value}</span>
+                <span style={{ fontWeight: 500, color: "#334155" }}>
+                  {params.value}
+                </span>
               </div>
             );
           }
@@ -151,7 +190,9 @@ export default function DataTable({
         };
       }
 
-      const isStatusCol = colDef.field?.toLowerCase() === 'status' || colDef.headerName?.toLowerCase() === 'status';
+      const isStatusCol =
+        colDef.field?.toLowerCase() === "status" ||
+        colDef.headerName?.toLowerCase() === "status";
       if (isStatusCol && !colDef.cellRenderer) {
         colDef.cellRenderer = DefaultStatusCellRenderer;
       }
@@ -167,9 +208,81 @@ export default function DataTable({
   };
 
   return (
-    <div className={`${styles.container} ${manrope.className}`}>
-      <div className={styles.topBar}>
-        <div className={styles.tabsContainer}>
+    <div>
+      <CustomCard
+        head={"Recent Leads"}
+        leftElement={
+          dynamicTabs.length && (
+            <CustomSelect
+              options={dynamicTabs.map((option) => {
+                return {
+                  label: option,
+                  value: option,
+                };
+              })}
+              onSelect={(d) => setActiveTab(d.value)}
+            />
+          )
+        }
+        rightElement={
+          <div className={styles.actions}>
+            {showSearch && (
+              <input
+                type="text"
+                placeholder="Search..."
+                className={styles.searchInput}
+                value={searchText}
+                onChange={(e) => setSearchText(e.target.value)}
+                autoFocus
+              />
+            )}
+            <button
+              className={`${styles.actionBtn} ${showSearch ? styles.activeActionBtn : ""}`}
+              onClick={() => {
+                setShowSearch(!showSearch);
+                if (showSearch) setSearchText("");
+              }}
+              title="Search"
+            >
+              <SearchIcon />
+            </button>
+            <button
+              className={`${styles.actionBtn} ${showFilter ? styles.activeActionBtn : ""}`}
+              onClick={() => setShowFilter(!showFilter)}
+              title="Filter"
+            >
+              <FilterIcon />
+            </button>
+            <button
+              className={styles.actionBtn}
+              onClick={handleClearSort}
+              title="Clear Sort"
+            >
+              <SortIcon />
+            </button>
+          </div>
+        }
+      >
+        <div className={`ag-theme-quartz ${styles.table}`} style={{ height }}>
+          <AgGridReact
+            ref={gridRef}
+            rowData={filteredRows}
+            columnDefs={gridColumns}
+            defaultColDef={defaultColDef}
+            loading={loading}
+            pagination={pagination}
+            paginationPageSize={pageSize}
+            rowSelection={selectable ? { mode: "multiRow" } : undefined}
+            quickFilterText={searchText}
+            animateRows
+            suppressCellFocus={true}
+            onRowClicked={onRowClicked}
+            {...rest}
+          />
+        </div>
+      </CustomCard>
+
+      {/* <div className={styles.tabsContainer}>
           {dynamicTabs.map((tab) => (
             <button
               key={tab}
@@ -179,62 +292,7 @@ export default function DataTable({
               {tab}
             </button>
           ))}
-          
-        </div>
-        <div className={styles.actions}>
-          {showSearch && (
-            <input
-              type="text"
-              placeholder="Search..."
-              className={styles.searchInput}
-              value={searchText}
-              onChange={(e) => setSearchText(e.target.value)}
-              autoFocus
-            />
-          )}
-          <button 
-            className={`${styles.actionBtn} ${showSearch ? styles.activeActionBtn : ''}`} 
-            onClick={() => { setShowSearch(!showSearch); if (showSearch) setSearchText(""); }}
-            title="Search"
-          >
-            <SearchIcon />
-          </button>
-          <button 
-            className={`${styles.actionBtn} ${showFilter ? styles.activeActionBtn : ''}`} 
-            onClick={() => setShowFilter(!showFilter)}
-            title="Filter"
-          >
-            <FilterIcon />
-          </button>
-          <button 
-            className={styles.actionBtn} 
-            onClick={handleClearSort}
-            title="Clear Sort"
-          >
-            <SortIcon />
-          </button>
-        </div>
-      </div>
-      <div
-        className={`ag-theme-quartz ${styles.table}`}
-        style={{ height }}
-      >
-        <AgGridReact
-          ref={gridRef}
-          rowData={filteredRows}
-          columnDefs={gridColumns}
-          defaultColDef={defaultColDef}
-          loading={loading}
-          pagination={pagination}
-          paginationPageSize={pageSize}
-          rowSelection={selectable ? { mode: "multiRow" } : undefined}
-          quickFilterText={searchText}
-          animateRows
-          suppressCellFocus={true}
-          onRowClicked={onRowClicked}
-          {...rest}
-        />
-      </div>
+        </div> */}
     </div>
   );
 }

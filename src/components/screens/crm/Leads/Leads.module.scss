@@ -1,14 +1,8 @@
-.container {
-  padding: $space-lg;
-  display: flex;
-  flex-direction: column;
-  gap: $space-md;
-}
-
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: $space-md;
 }
 
 .title {

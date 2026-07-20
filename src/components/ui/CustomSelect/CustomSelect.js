@@ -11,6 +11,8 @@ export default function CustomSelect({
   className = "",
   id,
   placeholder = "Select an option",
+  value,
+  onSelect = () => {},
   ...props
 }) {
   const generatedId = useId();
@@ -19,22 +21,38 @@ export default function CustomSelect({
   const containerClasses = [
     styles.container,
     fullWidth ? styles.fullWidth : "",
-    className
-  ].filter(Boolean).join(" ");
+    className,
+  ]
+    .filter(Boolean)
+    .join(" ");
 
   const selectWrapperClasses = [
     styles.selectWrapper,
-    error ? styles.hasError : ""
-  ].filter(Boolean).join(" ");
+    error ? styles.hasError : "",
+  ]
+    .filter(Boolean)
+    .join(" ");
 
   return (
     <div className={containerClasses}>
-      {label && <label htmlFor={selectId} className={styles.label}>{label}</label>}
+      {label && (
+        <label htmlFor={selectId} className={styles.label}>
+          {label}
+        </label>
+      )}
       <div className={selectWrapperClasses}>
         <select
           id={selectId}
           className={styles.select}
-          defaultValue=""
+          value={value}
+          defaultValue={value}
+          onChange={(e) => {
+            const selectedOption = options.find(
+              (o) => o.value === e.target.value,
+            );
+
+            onSelect(selectedOption, e.target.value, e);
+          }}
           {...props}
         >
           {placeholder && (
@@ -49,7 +67,12 @@ export default function CustomSelect({
           ))}
         </select>
         <div className={styles.chevron}>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+          >
             <polyline points="6 9 12 15 18 9" />
           </svg>
         </div>

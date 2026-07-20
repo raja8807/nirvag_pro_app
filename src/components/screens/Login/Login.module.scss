@@ -33,7 +33,7 @@
 }
 
 .textSide {
-  color: $accent;
+  color: $color-accent;
 
   @include respond-below(lg) {
     display: flex;
@@ -84,7 +84,7 @@
 }
 
 .formBox {
-  background: $accent;
+  background: $color-accent;
   border-radius: 24px;
   padding: 40px;
   width: 500px;
@@ -159,7 +159,7 @@
 }
 
 .footerText {
-  color: $accent;
+  color: $color-accent;
   font-size: $text-size-sm;
   opacity: 0.8;
 }

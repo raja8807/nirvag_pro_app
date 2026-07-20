@@ -6,14 +6,16 @@ import DataTable from "@/components/ui/DataTable/DataTable";
 import { SAMPLE_LEADS } from "@/constants/crmConstants";
 
 import styles from "./Leads.module.scss";
+import CustomButton from "@/components/ui/CustomButton/CustomButton";
+import { UserPlus } from "lucide-react";
 
 const ActionCellRenderer = (params) => {
   const router = useRouter();
-  
+
   return (
     <div className={styles.actionButtons}>
-      <button 
-        className={styles.viewBtn} 
+      <button
+        className={styles.viewBtn}
         onClick={(e) => {
           e.stopPropagation();
           router.push(`/crm/leads/${params.data.id}`);
@@ -21,7 +23,7 @@ const ActionCellRenderer = (params) => {
       >
         View
       </button>
-      <button 
+      <button
         className={styles.convertBtn}
         onClick={(e) => {
           e.stopPropagation();
@@ -87,7 +89,7 @@ export default function Leads() {
     <div className={styles.container}>
       <div className={styles.header}>
         <h1 className={styles.title}>Leads Pipeline</h1>
-        <button className={styles.newLeadBtn}>+ New Lead</button>
+        <CustomButton rightIcon={<UserPlus />}>New Lead</CustomButton>
       </div>
       <DataTable
         rows={SAMPLE_LEADS}
