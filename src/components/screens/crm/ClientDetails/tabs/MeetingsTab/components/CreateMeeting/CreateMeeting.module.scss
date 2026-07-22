@@ -1,0 +1,56 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: $space-lg;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $space-lg;
+
+  @include respond-below(sm) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.fullWidth {
+  grid-column: 1 / -1;
+}
+
+.sectionTitle {
+  font-size: $text-size-sm;
+  font-weight: 600;
+  margin-bottom: $space-sm;
+  color: $color-text-primary;
+  display: block;
+}
+
+.checkboxGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-lg;
+  align-items: center;
+
+  label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: $text-size-sm;
+    color: $color-text-primary;
+    cursor: pointer;
+  }
+
+  input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: $color-primary;
+  }
+}
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: $space-md;
+  margin-top: $space-lg;
+}

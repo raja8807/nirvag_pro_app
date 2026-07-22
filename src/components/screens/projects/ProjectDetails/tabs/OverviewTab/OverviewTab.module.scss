@@ -1,0 +1,65 @@
+@use "@/styles/scss/variables" as *;
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $space-lg;
+}
+
+.card {
+  background-color: $color-bg-light;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  padding: $space-lg;
+  box-shadow: $shadow-sm;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  gap: $space-sm;
+  margin-bottom: $space-lg;
+  border-bottom: 1px solid $color-border;
+  padding-bottom: $space-sm;
+
+  h3 {
+    margin: 0;
+    color: $color-text-primary;
+    font-size: $text-size-lg;
+    font-weight: 600;
+  }
+}
+
+.icon {
+  color: $color-primary;
+}
+
+.infoGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $space-md;
+}
+
+.infoItem {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.label {
+  font-size: $text-size-xs;
+  color: $color-text-secondary;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.value {
+  font-size: $text-size-md;
+  color: $color-text-primary;
+  font-weight: 500;
+}

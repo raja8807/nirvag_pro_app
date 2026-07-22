@@ -1,0 +1,139 @@
+@use "@/styles/scss/variables" as *;
+
+.container {
+  padding: $space-lg;
+  display: flex;
+  flex-direction: column;
+  gap: $space-md;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: $space-lg;
+  background-color: $color-bg-light;
+  padding: $space-lg;
+  border-radius: $radius-lg;
+  border: 1px solid $color-border;
+}
+
+.headerTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.titleSection {
+  display: flex;
+  align-items: center;
+  gap: $space-md;
+}
+
+.backBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: $color-text-secondary;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  border-radius: 50%;
+  
+  &:hover {
+    background-color: $color-bg-hover;
+    color: $color-text-primary;
+  }
+}
+
+.title {
+  font-size: $text-size-2xl;
+  font-weight: 700;
+  color: $color-text-primary;
+  margin: 0;
+}
+
+.locationBadge {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background-color: $color-info-light;
+  color: $color-info-dark;
+  padding: 4px 12px;
+  border-radius: $radius-full;
+  font-size: $text-size-xs;
+  font-weight: 600;
+}
+
+.kpiGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-md;
+  padding-top: $space-md;
+  padding-bottom: $space-md;
+  border-top: 1px dashed $color-border;
+  border-bottom: 1px dashed $color-border;
+}
+
+.kpiBox {
+  flex: 1;
+  min-width: 130px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-right: $space-md;
+  border-right: 1px solid $color-border;
+  
+  &:last-child {
+    border-right: none;
+  }
+}
+
+.kpiLabel {
+  font-size: $text-size-xs;
+  color: $color-text-secondary;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.kpiValue {
+  font-size: $text-size-md;
+  color: $color-text-primary;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.kpiValueHighlight {
+  @extend .kpiValue;
+  color: $color-primary;
+}
+
+.kpiValueAlert {
+  @extend .kpiValue;
+  color: $color-error;
+}
+
+.quickActions {
+  display: flex;
+  align-items: center;
+  gap: $space-md;
+  flex-wrap: wrap;
+}
+
+.quickLabel {
+  font-size: $text-size-sm;
+  color: $color-text-secondary;
+  font-weight: 500;
+}
+
+.actionButtons {
+  display: flex;
+  gap: $space-sm;
+  flex-wrap: wrap;
+}
+
+.content {
+  padding-top: $space-md;
+}

@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useMemo } from "react";
+import DataTable from "@/components/ui/DataTable/DataTable";
 import styles from "./FollowUpsList.module.scss";
 
 const MOCK_FOLLOW_UPS = [
@@ -19,39 +20,26 @@ const MOCK_FOLLOW_UPS = [
 ];
 
 const FollowUpsList = () => {
+  const columns = useMemo(
+    () => [
+      { headerName: "Date", field: "date" },
+      { headerName: "Type", field: "type" },
+      { headerName: "Assigned To", field: "assignedTo" },
+      {
+        headerName: "Status",
+        field: "status",
+      }
+    ],
+    []
+  );
+
   return (
-    <div className={styles.card}>
-      <div className={styles.tableWrapper}>
-        <table>
-          <thead>
-            <tr>
-              <th>Date</th>
-              <th>Type</th>
-              <th>Assigned To</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            {MOCK_FOLLOW_UPS.map((item) => (
-              <tr key={item.id}>
-                <td>{item.date}</td>
-                <td>{item.type}</td>
-                <td>{item.assignedTo}</td>
-                <td>
-                  <span
-                    className={`${styles.badge} ${
-                      item.status === "Completed" ? styles.completed : styles.upcoming
-                    }`}
-                  >
-                    {item.status}
-                  </span>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </div>
+    <DataTable
+      title="Follow-ups"
+      columns={columns}
+      rows={MOCK_FOLLOW_UPS}
+      dropdownFieldName="status"
+    />
   );
 };
 

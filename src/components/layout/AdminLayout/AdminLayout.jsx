@@ -21,9 +21,7 @@ const AdminLayout = ({ children }) => {
         <AdminHeader 
         setSidebarCollapsed={setSidebarCollapsed}
         />
-        <div className={
-          `${styles.cont} ${!sideBarCollapsed ? '' : styles.expanded}`
-        }>{children}</div>
+        <div className={styles.cont}>{children}</div>
       </div>
     </div>
   );

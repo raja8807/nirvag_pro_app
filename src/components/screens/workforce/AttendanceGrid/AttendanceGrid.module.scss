@@ -1,0 +1,72 @@
+@use "@/styles/scss/variables" as *;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: $space-lg;
+}
+
+.filterBar {
+  display: flex;
+  gap: $space-lg;
+  align-items: flex-end;
+  background-color: $color-bg-light;
+  padding: $space-md $space-lg;
+  border-radius: $radius-lg;
+  border: 1px solid $color-border;
+}
+
+.filterGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  label {
+    font-size: $text-size-xs;
+    font-weight: 600;
+    color: $color-text-secondary;
+  }
+
+  select, input {
+    padding: 8px 12px;
+    border: 1px solid $color-border;
+    border-radius: $radius-md;
+    font-size: $text-size-sm;
+    min-width: 250px;
+    outline: none;
+
+    &:focus {
+      border-color: $color-primary;
+    }
+  }
+
+  input[type="date"] {
+    min-width: 180px;
+  }
+}
+
+.gridContainer {
+  background-color: $color-bg-light;
+  border-radius: $radius-lg;
+  border: 1px solid $color-border;
+  overflow: hidden;
+  height: 60vh;
+}
+
+.statusDropdown {
+  padding: 4px 8px;
+  border-radius: $radius-sm;
+  border: 1px solid $color-border;
+  font-size: $text-size-xs;
+  width: 100%;
+  cursor: pointer;
+}
+
+.otInput {
+  padding: 4px 8px;
+  border-radius: $radius-sm;
+  border: 1px solid $color-border;
+  font-size: $text-size-xs;
+  width: 60px;
+  text-align: center;
+}

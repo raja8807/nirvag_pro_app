@@ -101,6 +101,7 @@ const DefaultStatusCellRenderer = (params) => {
         alignItems: "center",
         justifyContent: "center",
         whiteSpace: "nowrap",
+        
       }}
     >
       {params.value}
@@ -115,9 +116,11 @@ export default function DataTable({
   pagination = true,
   pageSize = 20,
   height = 400,
-  selectable = true,
+  selectable = false,
   onRowClicked,
   dropdownFieldName = "leadStatus",
+  title ,
+  actions = [],
   ...rest
 }) {
   const [activeTab, setActiveTab] = useState("All");
@@ -137,7 +140,7 @@ export default function DataTable({
   }, [rows]);
 
 
-  console.log(rows);
+  
   
   
 
@@ -159,7 +162,7 @@ export default function DataTable({
   }, [rows, activeTab]);
 
   const gridColumns = useMemo(() => {
-    return columns.map((c, index) => {
+    const finalCols = columns.map((c, index) => {
       const colDef = { ...c };
 
       if (showFilter) {
@@ -205,7 +208,38 @@ export default function DataTable({
 
       return colDef;
     });
-  }, [columns, showFilter]);
+
+    if (actions && actions.length > 0) {
+      finalCols.push({
+        headerName: "Actions",
+        field: "actions",
+        sortable: false,
+        filter: false,
+        minWidth: 150,
+        cellRenderer: (params) => {
+          return (
+            <div className={styles.rowActions}>
+              {actions.map((action, idx) => (
+                <button
+                  key={idx}
+                  title={action.name}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    if (action.onClick) action.onClick(params.data);
+                  }}
+                  className={styles.rowActionBtn}
+                >
+                  {action.icon}
+                </button>
+              ))}
+            </div>
+          );
+        },
+      });
+    }
+
+    return finalCols;
+  }, [columns, showFilter, actions]);
 
   const handleClearSort = () => {
     if (gridRef.current?.api) {
@@ -216,7 +250,8 @@ export default function DataTable({
   return (
     <div>
       <CustomCard
-        head={"Recent Leads"}
+        head={title}
+        noPadding
         leftElement={
           dynamicTabs.length && (
             <CustomSelect
@@ -269,7 +304,10 @@ export default function DataTable({
           </div>
         }
       >
-        <div className={`ag-theme-quartz ${styles.table}`} style={{ height }}>
+        <div 
+          className={`ag-theme-quartz ${styles.table}`} 
+          style={rest.domLayout === 'autoHeight' ? { width: '100%' } : { height }}
+        >
           <AgGridReact
             ref={gridRef}
             rowData={filteredRows}
@@ -283,6 +321,7 @@ export default function DataTable({
             animateRows
             suppressCellFocus={true}
             onRowClicked={onRowClicked}
+           
             {...rest}
           />
         </div>

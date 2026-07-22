@@ -1,0 +1,54 @@
+@use "@/styles/scss/variables" as *;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: $space-lg;
+}
+
+.card {
+  background-color: $color-bg-light;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  padding: $space-lg;
+  
+  h3 {
+    margin-top: 0;
+    margin-bottom: $space-lg;
+    color: $color-text-primary;
+    font-size: $text-size-lg;
+    font-weight: 600;
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $space-lg;
+}
+
+.gridItem {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.gridItemFull {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.label {
+  font-size: $text-size-xs;
+  color: $color-text-secondary;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.value {
+  font-size: $text-size-md;
+  color: $color-text-primary;
+  font-weight: 500;
+}

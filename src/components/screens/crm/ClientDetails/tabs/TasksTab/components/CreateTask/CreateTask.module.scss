@@ -1,0 +1,91 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: $space-lg;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $space-lg;
+
+  @include respond-below(sm) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.fullWidth {
+  grid-column: 1 / -1;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: $space-md;
+}
+
+.sectionTitle {
+  font-size: $text-size-sm;
+  font-weight: 600;
+  margin-bottom: $space-sm;
+  color: $color-text-primary;
+  display: block;
+}
+
+.checklist {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.checklistItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: $color-primary;
+  }
+
+  input[type="text"] {
+    flex: 1;
+    border: none;
+    background: transparent;
+    font-size: $text-size-sm;
+    color: $color-text-primary;
+    border-bottom: 1px solid $color-border;
+    padding: 4px 0;
+    outline: none;
+
+    &:focus {
+      border-bottom-color: $color-primary;
+    }
+  }
+
+  button {
+    background: none;
+    border: none;
+    color: $color-danger;
+    cursor: pointer;
+    
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}
+
+.addChecklistBtn {
+  align-self: flex-start;
+  margin-top: 8px;
+}
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: $space-md;
+  margin-top: $space-lg;
+  padding-top: $space-lg;
+  border-top: 1px solid $color-border;
+}

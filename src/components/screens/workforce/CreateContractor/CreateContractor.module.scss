@@ -1,0 +1,54 @@
+@use "@/styles/scss/variables" as *;
+
+.container {
+  padding-top: $space-lg;
+}
+
+.sectionCard {
+  background-color: $color-bg-light;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  padding: $space-lg;
+  margin-bottom: $space-lg;
+  box-shadow: $shadow-sm;
+
+  h3 {
+    margin: 0 0 $space-md 0;
+    font-size: $text-size-lg;
+    color: $color-text-primary;
+    border-bottom: 1px solid $color-border;
+    padding-bottom: $space-sm;
+  }
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: $space-md;
+
+  label {
+    font-size: $text-size-sm;
+    font-weight: 600;
+    color: $color-text-secondary;
+  }
+
+  input, select, textarea {
+    padding: 10px 14px;
+    border: 1px solid $color-border;
+    border-radius: $radius-md;
+    font-size: $text-size-sm;
+    outline: none;
+    background-color: $color-bg-light;
+    transition: all 0.2s;
+
+    &:focus {
+      border-color: $color-primary;
+      box-shadow: 0 0 0 2px rgba($color-primary, 0.1);
+    }
+  }
+
+  textarea {
+    resize: vertical;
+  }
+}

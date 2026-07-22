@@ -11,33 +11,7 @@ import { UserPlus } from "lucide-react";
 import PageHead from "@/components/ui/PageHead/PageHead";
 import PageLayout from "@/components/ui/PageLayout/PageLayout";
 
-const ActionCellRenderer = (params) => {
-  const router = useRouter();
-
-  return (
-    <div className={styles.actionButtons}>
-      <button
-        className={styles.viewBtn}
-        onClick={(e) => {
-          e.stopPropagation();
-          router.push(`/crm/leads/${params.data.id}`);
-        }}
-      >
-        View
-      </button>
-      <button
-        className={styles.convertBtn}
-        onClick={(e) => {
-          e.stopPropagation();
-          alert(`Converting ${params.data.name} to a project!`);
-        }}
-      >
-        Convert
-      </button>
-    </div>
-  );
-};
-
+import { Eye, RefreshCw } from "lucide-react";
 export default function LeadsScreen() {
   const router = useRouter();
   const { leads } = useContext(LeadContext);
@@ -79,15 +53,12 @@ export default function LeadsScreen() {
       field: "leadSource",
       minWidth: 120,
     },
-    // {
-    //   headerName: "Actions",
-    //   field: "actions",
-    //   cellRenderer: ActionCellRenderer,
-    //   minWidth: 200,
-    //   sortable: false,
-    //   filter: false,
-    // },
   ];
+
+  const tableActions = React.useMemo(() => [
+    { name: "View Profile", icon: <Eye size={16} />, onClick: (row) => router.push(`/crm/leads/${row.id}`) },
+    { name: "Convert to Project", icon: <RefreshCw size={16} />, onClick: (row) => alert(`Converting ${row.firstName || row.name} to a project!`) }
+  ], [router]);
 
   return (
     <div className={styles.container}>
@@ -106,6 +77,8 @@ export default function LeadsScreen() {
           pageSize={10}
           searchable
           selectable
+          dropdownFieldName="leadStatus"
+          actions={tableActions}
           onRowClicked={(e) => router.push(`/crm/leads/${e.data.id}`)}
         />
       </PageLayout>

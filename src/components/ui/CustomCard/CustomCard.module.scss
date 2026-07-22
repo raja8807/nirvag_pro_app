@@ -42,5 +42,13 @@
   .content {
     padding: $space-sm $space-md;
     padding-bottom: $space-lg;
+
+    &.noPadding {
+      padding: 0;
+    }
+  }
+
+  &.noPadding {
+    padding: 0;
   }
 }

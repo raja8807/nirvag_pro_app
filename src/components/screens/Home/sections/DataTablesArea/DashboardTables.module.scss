@@ -1,0 +1,53 @@
+@use "@/styles/scss/variables" as *;
+
+.tablesGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  
+  @include respond-below(xl) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.tableCard {
+  background: var(--white);
+  padding: 24px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-color);
+      margin: 0;
+    }
+
+    button {
+      background: none;
+      border: none;
+      color: var(--primary-color);
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+/* Custom override for the generic DataTable within a dashboard card */
+.tableWrapper {
+  /* Let DataTable take natural height */
+  width: 100%;
+}

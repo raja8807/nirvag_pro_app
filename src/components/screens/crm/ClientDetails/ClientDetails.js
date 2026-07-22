@@ -1,111 +1,133 @@
 "use client";
 
-import React, { useState } from "react";
-import { useRouter } from "next/navigation";
-import { SAMPLE_CLIENTS } from "@/constants/crmConstants";
+import React, { useState, useEffect } from "react";
+import { useRouter, useSearchParams, usePathname } from "next/navigation";
+import { MOCK_DB } from "@/constants/mockDataGenerator";
 
 import styles from "./ClientDetails.module.scss";
+import CustomTabs from "@/components/ui/CustomTabs/CustomTabs";
+import CustomButton from "@/components/ui/CustomButton/CustomButton";
+import PageLayout from "@/components/ui/PageLayout/PageLayout";
+import {
+  FolderArchive,
+  Phone,
+  MessageCircle,
+  Mail,
+  Calendar,
+  FileText,
+  ArrowLeft,
+  Star,
+} from "lucide-react";
+
+import OverviewTab from "./tabs/OverviewTab/OverviewTab";
+import ProjectsTab from "./tabs/ProjectsTab/ProjectsTab";
+import AgreementsTab from "./tabs/AgreementsTab/AgreementsTab";
+import InvoicesTab from "./tabs/InvoicesTab/InvoicesTab";
+import PaymentsTab from "./tabs/PaymentsTab/PaymentsTab";
+import ReceiptsTab from "./tabs/ReceiptsTab/ReceiptsTab";
+import DocumentsTab from "./tabs/DocumentsTab/DocumentsTab";
+import CommunicationTab from "./tabs/CommunicationTab/CommunicationTab";
+import MeetingsTab from "./tabs/MeetingsTab/MeetingsTab";
+import SiteVisitsTab from "./tabs/SiteVisitsTab/SiteVisitsTab";
+import NotesTab from "./tabs/NotesTab/NotesTab";
+import TasksTab from "./tabs/TasksTab/TasksTab";
+import ActivityLogTab from "./tabs/ActivityLogTab/ActivityLogTab";
 
 export default function ClientDetails({ id }) {
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
   const router = useRouter();
-  const [activeTab, setActiveTab] = useState("Profile");
-  
-  // Find client by ID (or fallback to first client for demo purposes)
-  const client = SAMPLE_CLIENTS.find(c => c.id === id) || SAMPLE_CLIENTS[0];
 
-  const TABS = ["Profile", "Projects", "Financials", "Documents"];
+  const tabQuery = searchParams.get("tab");
+  const [activeTab, setActiveTab] = useState(tabQuery || "Overview");
+
+  useEffect(() => {
+    if (tabQuery) {
+      setActiveTab((prev) => (prev !== tabQuery ? tabQuery : prev));
+    }
+  }, [tabQuery]);
+
+  // Find client by ID
+  const client = MOCK_DB.clients.find(c => c.id === id) || MOCK_DB.clients[0];
+
+  const TABS = [
+    "Overview",
+    "Projects",
+    "Agreements",
+    "Invoices",
+    "Payments",
+    "Receipts",
+    "Documents",
+    "Communication",
+    "Meetings",
+    "Site Visits",
+    "Notes",
+    "Tasks",
+    "Activity Log"
+  ];
 
   if (!client) return <div>Loading...</div>;
 
   return (
-    <div className={styles.container}>
+    <PageLayout className={styles.container}>
+      <br />
       <div className={styles.header}>
-        <div className={styles.headerLeft}>
-          <button className={styles.backBtn} onClick={() => router.back()}>
-            ← Back
-          </button>
-          <div className={styles.titleBlock}>
+        <div className={styles.headerTop}>
+          <div className={styles.titleSection}>
+            <button className={styles.backBtn} onClick={() => router.back()}>
+              <ArrowLeft size={20} />
+            </button>
             <h1 className={styles.title}>{client.name}</h1>
+            <span className={styles.statusBadge}>Active Client</span>
+            <div className={styles.rating}>
+              <Star size={16} fill="#f59e0b" color="#f59e0b" />
+              <Star size={16} fill="#f59e0b" color="#f59e0b" />
+              <Star size={16} fill="#f59e0b" color="#f59e0b" />
+              <Star size={16} fill="#f59e0b" color="#f59e0b" />
+              <Star size={16} fill="#f59e0b" color="#f59e0b" />
+            </div>
           </div>
-          <p className={styles.subtitle}>Client since 2024</p>
         </div>
-        <div className={styles.headerRight}>
-          <button className={styles.secondaryBtn}>Edit Client</button>
+
+        <div className={styles.quickActions}>
+          <span className={styles.quickLabel}>Quick Actions:</span>
+          <div className={styles.actionButtons}>
+            <CustomButton variant="outline" leftIcon={<Phone size={14} />}>Call</CustomButton>
+            <CustomButton variant="outline" leftIcon={<MessageCircle size={14} />}>WhatsApp</CustomButton>
+            <CustomButton variant="outline" leftIcon={<Mail size={14} />}>Email</CustomButton>
+            <CustomButton variant="outline" leftIcon={<FileText size={14} />}>New Project</CustomButton>
+            <CustomButton variant="outline" leftIcon={<FileText size={14} />}>New Invoice</CustomButton>
+            <CustomButton variant="primary" leftIcon={<FolderArchive size={14} />}>Receive Payment</CustomButton>
+          </div>
         </div>
       </div>
 
-      <div className={styles.tabsBar}>
-        {TABS.map(tab => (
-          <button 
-            key={tab}
-            className={`${styles.tabBtn} ${activeTab === tab ? styles.activeTab : ""}`}
-            onClick={() => setActiveTab(tab)}
-          >
-            {tab}
-          </button>
-        ))}
-      </div>
+      <CustomTabs 
+        tabs={TABS} 
+        activeTab={activeTab} 
+        onTabChange={(tab) => {
+          setActiveTab(tab);
+          const params = new URLSearchParams(searchParams.toString());
+          params.set("tab", tab);
+          router.replace(`${pathname}?${params.toString()}`, { scroll: false });
+        }} 
+      />
 
       <div className={styles.content}>
-        {activeTab === "Profile" && (
-          <div className={styles.card}>
-            <h3>Company Details</h3>
-            <div className={styles.grid}>
-              <div className={styles.gridItem}>
-                <span className={styles.label}>Contact Person</span>
-                <span className={styles.value}>{client.contactPerson}</span>
-              </div>
-              <div className={styles.gridItem}>
-                <span className={styles.label}>Phone</span>
-                <span className={styles.value}>{client.phone}</span>
-              </div>
-              <div className={styles.gridItem}>
-                <span className={styles.label}>Email</span>
-                <span className={styles.value}>{client.email}</span>
-              </div>
-              <div className={styles.gridItem}>
-                <span className={styles.label}>GST Number</span>
-                <span className={styles.value}>{client.gst}</span>
-              </div>
-              <div className={styles.gridItem}>
-                <span className={styles.label}>PAN Number</span>
-                <span className={styles.value}>{client.pan}</span>
-              </div>
-              <div className={styles.gridItemFull}>
-                <span className={styles.label}>Address</span>
-                <span className={styles.value}>{client.address}</span>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {activeTab === "Projects" && (
-          <div className={styles.card}>
-            <h3>Project History</h3>
-            <p className={styles.emptyText}>No project history available.</p>
-          </div>
-        )}
-
-        {activeTab === "Financials" && (
-          <div className={styles.card}>
-            <h3>Invoices & Receipts</h3>
-            <div className={styles.financialSummary}>
-              <div className={styles.finBox}>
-                <span className={styles.finLabel}>Pending Dues</span>
-                <span className={styles.finValueDanger}>{client.pendingDues}</span>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {activeTab === "Documents" && (
-          <div className={styles.card}>
-            <h3>Agreements & IDs</h3>
-            <p className={styles.emptyText}>No documents uploaded yet.</p>
-            <button className={styles.secondaryBtn}>Upload Document</button>
-          </div>
-        )}
+        {activeTab === "Overview" && <OverviewTab client={client} />}
+        {activeTab === "Projects" && <ProjectsTab client={client} />}
+        {activeTab === "Agreements" && <AgreementsTab client={client} />}
+        {activeTab === "Invoices" && <InvoicesTab client={client} />}
+        {activeTab === "Payments" && <PaymentsTab client={client} />}
+        {activeTab === "Receipts" && <ReceiptsTab client={client} />}
+        {activeTab === "Documents" && <DocumentsTab client={client} />}
+        {activeTab === "Communication" && <CommunicationTab client={client} />}
+        {activeTab === "Meetings" && <MeetingsTab client={client} />}
+        {activeTab === "Site Visits" && <SiteVisitsTab client={client} />}
+        {activeTab === "Notes" && <NotesTab client={client} />}
+        {activeTab === "Tasks" && <TasksTab client={client} />}
+        {activeTab === "Activity Log" && <ActivityLogTab client={client} />}
       </div>
-    </div>
+    </PageLayout>
   );
 }

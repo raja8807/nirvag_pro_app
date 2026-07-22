@@ -1,18 +1,27 @@
-.home {
-  display: flex;
-  flex-direction: column;
+@use "@/styles/scss/variables" as *;
+
+.homeContainer {
+  display: grid;
+  grid-template-columns: 1fr 340px; /* Main content | Right Sidebar */
+  gap: 24px;
   width: 100%;
+  max-width: 100%;
+  
+  @include respond-below(xl) {
+    grid-template-columns: 1fr;
+  }
 }
 
-.overlay {
-  position: fixed;
-  height: 100vh;
-  width: 100vw;
-  background-color: black;
-  top: 0;
-  left: 0;
-  background-image: url("/design.png");
-  opacity: 0.5;
+.mainContent {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-width: 0; // Fixes overflow in CSS Grid
+}
 
-  display: none;
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-width: 0;
 }

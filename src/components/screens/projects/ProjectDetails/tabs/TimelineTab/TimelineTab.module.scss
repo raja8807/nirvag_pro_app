@@ -1,0 +1,163 @@
+.card {
+  background-color: $color-bg-light;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  padding: $space-lg;
+  box-shadow: $shadow-sm;
+
+  h3 {
+    margin-top: 0;
+    margin-bottom: $space-lg;
+    color: $color-text-primary;
+    font-size: $text-size-lg;
+    font-weight: 600;
+  }
+}
+
+.timeline {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  li {
+    margin-bottom: $space-lg;
+    padding-left: $space-lg;
+    border-left: 2px solid $color-border;
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: -6px;
+      top: 0;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: $color-primary;
+    }
+  }
+}
+
+.timelineDate {
+  font-size: $text-size-xs;
+  color: $color-text-secondary;
+  margin-bottom: 4px;
+}
+
+.timelineContent {
+  font-size: $text-size-sm;
+  color: $color-text-primary;
+  line-height: 1.5;
+}
+
+.timelineEvent {
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background-color: #fcfcfc;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  padding: $space-md;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.eventHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid $color-border;
+  padding-bottom: 8px;
+  
+  @include respond-below(sm) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}
+
+.eventTypeBlock {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $color-primary;
+  background-color: rgba($color-primary, 0.1);
+  padding: 6px;
+  border-radius: 50%;
+}
+
+.eventType {
+  font-weight: 600;
+  color: $color-text-primary;
+  font-size: $text-size-sm;
+}
+
+.eventMeta {
+  display: flex;
+  gap: 12px;
+}
+
+.metaItem {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: $text-size-xs;
+  color: $color-text-secondary;
+}
+
+.eventBody {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.description {
+  font-size: $text-size-sm;
+  color: $color-text-primary;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.eventFooter {
+  display: flex;
+  gap: 16px;
+  margin-top: 4px;
+}
+
+.footerItem {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: $text-size-xs;
+  color: $color-text-secondary;
+  background-color: $color-bg-light;
+  padding: 4px 8px;
+  border-radius: $radius-sm;
+  border: 1px solid $color-border;
+}
+
+.secondaryBtn {
+  background-color: $color-bg-light;
+  border: 1px solid $color-border;
+  color: $color-text-primary;
+  padding: 8px 16px;
+  border-radius: $radius-md;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: $space-md;
+  transition: all $transition-fast;
+
+  &:hover {
+    background-color: $color-bg-hover;
+    border-color: $color-border-dark;
+  }
+}

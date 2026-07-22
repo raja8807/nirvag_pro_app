@@ -11,6 +11,8 @@ import {
   FolderKanban,
   Home,
   Users,
+  HardHat,
+  ShieldUser,
 } from "lucide-react";
 import { Image } from "react-bootstrap";
 
@@ -49,8 +51,22 @@ const SideBar = ({sideBarCollapsed, setSidebarCollapsed}) => {
         },
         {
           name: "Sites",
-          href: "/projects/clients",
+          href: "/projects/sites",
         },
+      ],
+    },
+    {
+      name: "Workforce",
+      href: "/workforce/dashboard",
+      icon: <ShieldUser />,
+      subMenus: [
+        { name: "Dashboard", href: "/workforce/dashboard" },
+        { name: "Employees", href: "/workforce/employees" },
+        { name: "Workers", href: "/workforce/workers" },
+        { name: "Contractors", href: "/workforce/contractors" },
+        { name: "Attendance", href: "/workforce/attendance" },
+        { name: "Labour Payments", href: "/workforce/payments" },
+        { name: "Reports", href: "/workforce/reports" },
       ],
     },
   ];
@@ -63,7 +79,16 @@ const SideBar = ({sideBarCollapsed, setSidebarCollapsed}) => {
     );
   };
 
-  const isActive = (href) => pathname.includes(href);
+  console.log(pathname);
+  
+
+  const isActive = (href) =>{
+    if(href === "/"){
+      return  pathname === "/"
+    }
+
+    return  pathname.includes(href)
+  };
 
   const [expandedMenus, setExpandedMenus] = useState(() => {
     const expanded = menus

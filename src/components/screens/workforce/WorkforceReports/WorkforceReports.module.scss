@@ -1,0 +1,84 @@
+@use "@/styles/scss/variables" as *;
+
+.container {
+  padding-top: $space-md;
+}
+
+.reportsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: $space-lg;
+}
+
+.reportCard {
+  background-color: $color-bg-light;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  padding: $space-lg;
+  display: flex;
+  gap: $space-lg;
+  box-shadow: $shadow-sm;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: $shadow-md;
+  }
+}
+
+.iconWrapper {
+  background-color: $color-primary-light;
+  color: $color-primary;
+  width: 48px;
+  height: 48px;
+  border-radius: $radius-md;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.reportInfo {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+
+  h3 {
+    margin: 0 0 $space-xs 0;
+    font-size: $text-size-lg;
+    color: $color-text-primary;
+  }
+
+  p {
+    margin: 0 0 $space-md 0;
+    font-size: $text-size-sm;
+    color: $color-text-secondary;
+    line-height: 1.4;
+  }
+}
+
+.filtersSection {
+  display: flex;
+  gap: $space-sm;
+  margin-bottom: $space-md;
+
+  select {
+    padding: 6px 10px;
+    border: 1px solid $color-border;
+    border-radius: $radius-sm;
+    font-size: $text-size-xs;
+    outline: none;
+    background-color: $color-bg-secondary;
+    flex: 1;
+
+    &:focus {
+      border-color: $color-primary;
+    }
+  }
+}
+
+.actions {
+  display: flex;
+  gap: $space-sm;
+  margin-top: auto;
+}

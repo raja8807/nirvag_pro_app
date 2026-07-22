@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useMemo } from "react";
 import styles from "./QuotationsList.module.scss";
 import { Eye, Download, Mail, Copy, Edit2 } from "lucide-react";
+import DataTable from "@/components/ui/DataTable/DataTable";
 
 const MOCK_QUOTES = [
   {
@@ -22,53 +23,50 @@ const MOCK_QUOTES = [
 ];
 
 const getStatusClass = (status) => {
-  if (status.includes("Approved") || status === "Accepted") return styles.approved;
-  if (status.includes("Pending")) return styles.pending;
-  return styles.draft;
+  switch (status) {
+    case "Pending Approval":
+      return styles.pending;
+    case "Draft":
+      return styles.draft;
+    default:
+      return "";
+  }
 };
 
 const QuotationsList = () => {
+  const columns = useMemo(
+    () => [
+      { headerName: "Quotation No", field: "quoteNo", flex: 1.5 },
+      { headerName: "Date", field: "date" },
+      { headerName: "Amount", field: "amount" },
+      { headerName: "Created By", field: "createdBy" },
+      {
+        headerName: "Status",
+        field: "status",
+      }
+    ],
+    []
+  );
+
+  const tableActions = useMemo(
+    () => [
+      { name: "Preview PDF", icon: <Eye size={16} />, onClick: (row) => console.log("Preview", row) },
+      { name: "Download PDF", icon: <Download size={16} />, onClick: (row) => console.log("Download", row) },
+      { name: "Email", icon: <Mail size={16} />, onClick: (row) => console.log("Email", row) },
+      { name: "Duplicate", icon: <Copy size={16} />, onClick: (row) => console.log("Duplicate", row) },
+      { name: "Revise", icon: <Edit2 size={16} />, onClick: (row) => console.log("Revise", row) },
+    ],
+    []
+  );
+
   return (
-    <div className={styles.card}>
-      <div className={styles.tableWrapper}>
-        <table>
-          <thead>
-            <tr>
-              <th>Quotation No</th>
-              <th>Date</th>
-              <th>Amount</th>
-              <th>Created By</th>
-              <th>Status</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {MOCK_QUOTES.map((item) => (
-              <tr key={item.id}>
-                <td style={{ fontWeight: 500 }}>{item.quoteNo}</td>
-                <td>{item.date}</td>
-                <td>{item.amount}</td>
-                <td>{item.createdBy}</td>
-                <td>
-                  <span className={`${styles.badge} ${getStatusClass(item.status)}`}>
-                    {item.status}
-                  </span>
-                </td>
-                <td>
-                  <div className={styles.actions}>
-                    <button title="Preview PDF"><Eye size={16} /></button>
-                    <button title="Download PDF"><Download size={16} /></button>
-                    <button title="Email"><Mail size={16} /></button>
-                    <button title="Duplicate"><Copy size={16} /></button>
-                    <button title="Revise"><Edit2 size={16} /></button>
-                  </div>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </div>
+    <DataTable
+      // title="Quotations"
+      columns={columns}
+      rows={MOCK_QUOTES}
+      dropdownFieldName="status"
+      actions={tableActions}
+    />
   );
 };
 

@@ -172,6 +172,7 @@ const CreateLeadScreen = () => {
         title={"Create New Lead"}
         right={<CustomButton onClick={handleSave} rightIcon={<Save />}>Save</CustomButton>}
         float
+        hasBackButton
       />
       <PageLayout>
         <Row>

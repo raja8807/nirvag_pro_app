@@ -3,28 +3,15 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 import DataTable from "@/components/ui/DataTable/DataTable";
-import { SAMPLE_CLIENTS } from "@/constants/crmConstants";
+import { MOCK_DB } from "@/constants/mockDataGenerator";
 
 import styles from "./Clients.module.scss";
+import CustomButton from "@/components/ui/CustomButton/CustomButton";
+import { UserPlus } from "lucide-react";
+import PageHead from "@/components/ui/PageHead/PageHead";
+import PageLayout from "@/components/ui/PageLayout/PageLayout";
 
-const ActionCellRenderer = (params) => {
-  const router = useRouter();
-  
-  return (
-    <div className={styles.actionButtons}>
-      <button 
-        className={styles.viewBtn} 
-        onClick={(e) => {
-          e.stopPropagation();
-          router.push(`/crm/clients/${params.data.id}`);
-        }}
-      >
-        View Profile
-      </button>
-    </div>
-  );
-};
-
+import { Eye } from "lucide-react";
 export default function Clients() {
   const router = useRouter();
 
@@ -65,30 +52,30 @@ export default function Clients() {
       field: "pendingDues",
       minWidth: 150,
     },
-    {
-      headerName: "Actions",
-      field: "actions",
-      cellRenderer: ActionCellRenderer,
-      minWidth: 150,
-      sortable: false,
-      filter: false,
-    },
   ];
 
+  const tableActions = React.useMemo(() => [
+    { name: "View Profile", icon: <Eye size={16} />, onClick: (row) => router.push(`/crm/clients/${row.id}`) }
+  ], [router]);
+
   return (
-    <div className={styles.container}>
-      <div className={styles.header}>
-        <h1 className={styles.title}>Client Directory</h1>
-        <button className={styles.newClientBtn}>+ Add Client</button>
-      </div>
-      <DataTable
-        rows={SAMPLE_CLIENTS}
-        columns={columns}
-        pageSize={10}
-        searchable
-        selectable
-        onRowClicked={(e) => router.push(`/crm/clients/${e.data.id}`)}
+    <>
+      <PageHead
+        title={"Client Directory"}
+        right={<CustomButton onClick={() => router.push('/crm/clients/create')} rightIcon={<UserPlus />}>Create Client</CustomButton>}
       />
-    </div>
+
+      <PageLayout>
+        <DataTable
+          rows={MOCK_DB.clients}
+          columns={columns}
+          pageSize={10}
+          searchable
+          selectable
+          actions={tableActions}
+          onRowClicked={(e) => router.push(`/crm/clients/${e.data.id}`)}
+        />
+      </PageLayout>
+    </>
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 
 import { LeadContext } from "@/context/LeadContext";
 
@@ -15,6 +15,7 @@ import TasksTab from "./tabs/TasksTab/TasksTab";
 import NotesTab from "./tabs/NotesTab/NotesTab";
 import AttachmentsTab from "./tabs/AttachmentsTab/AttachmentsTab";
 import ActivityLogTab from "./tabs/ActivityLogTab/ActivityLogTab";
+import CustomTabs from "@/components/ui/CustomTabs/CustomTabs";
 import CustomButton from "@/components/ui/CustomButton/CustomButton";
 import {
   FolderArchive,
@@ -27,14 +28,24 @@ import {
   Star,
 } from "lucide-react";
 import PageLayout from "@/components/ui/PageLayout/PageLayout";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import PageHead from "@/components/ui/PageHead/PageHead";
 
 export default function LeadDetails({ id }) {
-  const [activeTab, setActiveTab] = useState("Overview");
-  const { leads } = useContext(LeadContext);
-
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
   const router = useRouter();
+
+  const tabQuery = searchParams.get("tab");
+  const [activeTab, setActiveTab] = useState(tabQuery || "Overview");
+
+  useEffect(() => {
+    if (tabQuery) {
+      setActiveTab((prev) => (prev !== tabQuery ? tabQuery : prev));
+    }
+  }, [tabQuery]);
+
+  const { leads } = useContext(LeadContext);
 
   // Find lead by ID (or fallback to first lead for demo purposes)
   const lead = leads.find((l) => l.id === id);
@@ -140,17 +151,16 @@ export default function LeadDetails({ id }) {
         </div>
       </div> */}
 
-        <div className={styles.tabsBar}>
-          {TABS.map((tab) => (
-            <button
-              key={tab}
-              className={`${styles.tabBtn} ${activeTab === tab ? styles.activeTab : ""}`}
-              onClick={() => setActiveTab(tab)}
-            >
-              {tab}
-            </button>
-          ))}
-        </div>
+        <CustomTabs 
+          tabs={TABS} 
+          activeTab={activeTab} 
+          onTabChange={(tab) => {
+            setActiveTab(tab);
+            const params = new URLSearchParams(searchParams.toString());
+            params.set("tab", tab);
+            router.replace(`${pathname}?${params.toString()}`, { scroll: false });
+          }} 
+        />
 
         <div className={styles.content}>
           {activeTab === "Overview" && <ProfileTab lead={lead} />}

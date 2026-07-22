@@ -1,0 +1,151 @@
+@use "@/styles/scss/variables" as *;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: $space-lg;
+  padding: $space-lg;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $color-bg-light;
+  padding: $space-lg;
+  border-radius: $radius-lg;
+  border: 1px solid $color-border;
+}
+
+.titleSection {
+  display: flex;
+  align-items: center;
+  gap: $space-md;
+}
+
+.backBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: $color-text-secondary;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  border-radius: 50%;
+
+  &:hover {
+    background-color: $color-bg-hover;
+    color: $color-text-primary;
+  }
+}
+
+.title {
+  font-size: $text-size-2xl;
+  font-weight: 700;
+  color: $color-text-primary;
+  margin: 0;
+}
+
+.actionButtons {
+  display: flex;
+  gap: $space-sm;
+}
+
+.formContainer {
+  background-color: $color-bg-light;
+  border-radius: $radius-lg;
+  border: 1px solid $color-border;
+  padding: $space-xl;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: $space-xl;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: $space-lg;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  gap: $space-sm;
+  border-bottom: 1px solid $color-border;
+  padding-bottom: $space-sm;
+
+  h3 {
+    margin: 0;
+    color: $color-text-primary;
+    font-size: $text-size-lg;
+    font-weight: 600;
+  }
+}
+
+.icon {
+  color: $color-primary;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $space-lg;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  label {
+    font-size: $text-size-sm;
+    color: $color-text-primary;
+    font-weight: 500;
+  }
+
+  input {
+    padding: 10px $space-sm;
+    border: 1px solid $color-border;
+    border-radius: $radius-md;
+    font-size: $text-size-sm;
+    color: $color-text-primary;
+    background-color: $color-bg-light;
+    transition: all 0.2s ease;
+
+    &:focus {
+      outline: none;
+      border-color: $color-primary;
+      box-shadow: 0 0 0 2px rgba($color-primary, 0.1);
+    }
+
+    &::placeholder {
+      color: $color-text-tertiary;
+    }
+  }
+}
+
+.required {
+  // color: $color-error;
+  margin-left: 2px;
+}
+
+@include respond-below(md) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: $space-md;
+  }
+
+  .actionButtons {
+    width: 100%;
+    justify-content: space-between;
+  }
+}

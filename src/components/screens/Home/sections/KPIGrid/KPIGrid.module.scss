@@ -1,0 +1,17 @@
+@use "@/styles/scss/variables" as *;
+
+.kpiGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  
+  @include respond-below(xl) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @include respond-below(lg) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @include respond-below(md) {
+    grid-template-columns: 1fr;
+  }
+}

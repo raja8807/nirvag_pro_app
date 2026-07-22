@@ -1,17 +1,25 @@
 import React from "react";
 import styles from "./CustomCard.module.scss";
 
-const CustomCard = ({ children, head, leftElement, rightElement }) => {
+const CustomCard = ({
+  children,
+  head,
+  leftElement,
+  rightElement,
+  noPadding,
+}) => {
   return (
-    <div className={styles.CustomCard}>
+    <div
+      className={`${styles.CustomCard} ${noPadding ? styles.noPadding : ""}`}
+    >
       <div className={styles.topBar}>
         <div className={styles.left}>
-          <h2>{head}</h2>
+          {head && <h2>{head}</h2>}
           {leftElement}
         </div>
         {rightElement}
       </div>
-      <div className={styles.content}>
+      <div className={`${styles.content} ${noPadding ? styles.noPadding : ""}`}>
         {children}
       </div>
     </div>
